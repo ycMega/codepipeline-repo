@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Creates a Lambda function'
+Parameters:
+  environmentName:
+    Type: String
+    AllowedValues:
+      - dev
+      - test
+      - prod
+    Description: Environment name, eg, dev, test, prod
+Resources:
+  LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+              - lambda.amazonaws.com
+            Action:
+            - sts:AssumeRole
+        Path: "/"
+        Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - logs:*
+              Resource: arn:aws:logs:*:*:*
+  SampleLambdaFunction:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: !Sub ${environmentName}_SampleLambdaFunction
+      Handler: "index.handler"
+      Code:
+        ZipFile: !Sub |
+          'use strict';
+          exports.handler = (event, context, callback) => {
+              console.log('Environment: ${environmentName}');
+              console.log('Received event:', JSON.stringify(event));
+              callback(null, JSON.stringify(event));
+          };
+      Runtime: "nodejs16.x" # "nodejs10.x"
+      Timeout: "60"
+      Role:
+        Fn::GetAtt:
+          - "LambdaExecutionRole"
+          - "Arn"
