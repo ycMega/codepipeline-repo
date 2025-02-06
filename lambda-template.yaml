@@ -45,7 +45,7 @@ Resources:
               callback(null, JSON.stringify(event));
           };
       Runtime: "nodejs16.x" # "nodejs10.x"
-      Timeout: "60"
+      Timeout: "70" # 60
       Role:
         Fn::GetAtt:
           - "LambdaExecutionRole"
