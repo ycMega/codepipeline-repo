@@ -1,0 +1,4 @@
+- push之后会立即触发pipeline的source并在30s内成功
+- 随后触发prod，失败了，因为check changeset status错误（可能因为当时有一个failed的changeset？）
+- 重新部署prod能成功，但并没有创建任何changeset，是我手动创建了一个有效的changeset（之后不管手动还是自动创建都无效了）
+- 如果删掉了所有的changeset，再push代码触发pipeline，发现get changeset status报错，查看changeset发现创建了一个failed的changeset，原因是`The submitted information didn't contain changes. Submit different information to create a change set.`
