@@ -43,7 +43,7 @@ Resources:
           exports.handler = (event, context, callback) => {
               console.log('Environment: ${environmentName}');
               // comment~
-              console
+              123sc
               console.log('Received event:', JSON.stringify(event));
               callback(null, JSON.stringify(event));
           };
