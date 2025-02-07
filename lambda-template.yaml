@@ -21,7 +21,7 @@ Resources:
               Service:
               - lambda.amazonaws.com
             Action:
-            - sts:Assle
+            - sts:A
         Path: "/"
         Policies:
         - PolicyName: root # just a comment
@@ -42,8 +42,7 @@ Resources:
           'use strict';
           exports.handler = (event, context, callback) => {
               console.log('Environment: ${environmentName}');
-              // comment~
-              123sc
+              // comment~ ooo
               console.log('Received event:', JSON.stringify(event));
               callback(null, JSON.stringify(event));
           };
