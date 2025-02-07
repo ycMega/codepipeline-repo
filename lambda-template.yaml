@@ -21,7 +21,7 @@ Resources:
               Service:
               - lambda.amazonaws.com
             Action:
-            - sts:A
+            - sts:AssumeRole
         Path: "/"
         Policies:
         - PolicyName: root # just a comment
@@ -47,7 +47,7 @@ Resources:
               callback(null, JSON.stringify(event));
           };
       Runtime: "nodejs16.x" # "nodejs10.x"
-      Timeout: "70" # 60
+      Timeout: "-1" # 60
       Role:
         Fn::GetAtt:
           - "LambdaExecutionRole"
