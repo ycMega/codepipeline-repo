@@ -46,8 +46,8 @@ Resources:
               console.log('Received event:', JSON.stringify(event));
               callback(null, JSON.stringify(event));
           };
-      Runtime: "nodejs16.x" # "nodejs10.x"
-      Timeout: "-1" # 60
+      Runtime: "nodejs10.x" # "nodejs10.x"
+      Timeout: "60" # 60
       Role:
         Fn::GetAtt:
           - "LambdaExecutionRole"
