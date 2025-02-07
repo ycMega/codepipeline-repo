@@ -21,7 +21,7 @@ Resources:
               Service:
               - lambda.amazonaws.com
             Action:
-            - sts:AssumeRole
+            - sts:Assle
         Path: "/"
         Policies:
         - PolicyName: root # just a comment
