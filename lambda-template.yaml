@@ -1,3 +1,4 @@
+# a CloudFormation template that represents the application being deployed via CodePipeline/Step Functions.
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Creates a Lambda function'
 Parameters:
@@ -41,6 +42,7 @@ Resources:
           'use strict';
           exports.handler = (event, context, callback) => {
               console.log('Environment: ${environmentName}');
+              // comment~
               console.log('Received event:', JSON.stringify(event));
               callback(null, JSON.stringify(event));
           };
